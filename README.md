@@ -63,7 +63,7 @@ cloud-app/
 
 ---
 
-## Status projektu
+## Status Projektu
 
 - [x] Artefakt 1 – Diagram architektury
-- [ ] Artefakt 2 – Repozytorium i środowisko Docker
+- [x] Artefakt 2 – Środowisko wielokontenerowe (Docker Compose)

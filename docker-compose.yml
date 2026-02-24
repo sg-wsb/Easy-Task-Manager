@@ -1,0 +1,19 @@
+services:
+  db:
+    image: alpine
+    container_name: sqlserver
+    command: sleep infinity
+
+  backend:
+    image: node:20
+    container_name: backend
+    command: sleep infinity
+    ports:
+      - "5000:5000"
+
+  frontend:
+    image: node:20
+    container_name: frontend
+    command: sleep infinity
+    ports:
+      - "3000:3000"
