@@ -1,0 +1,19 @@
+flowchart LR
+
+    User["User"]
+
+    Frontend["Frontend<br/>React + Vite<br/>Presentation Layer"]
+
+    Backend["Backend<br/>Node.js + Express<br/>Application Layer"]
+
+    Database["Azure SQL Database<br/>Data Layer"]
+
+    User --> Frontend
+    Frontend --> Backend
+    Backend --> Database
+
+    subgraph "Application Architecture"
+        Frontend
+        Backend
+        Database
+    end
