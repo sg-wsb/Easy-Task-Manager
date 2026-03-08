@@ -1,69 +1,16 @@
-# Easy Task Manager
+# React + Vite
 
-Autor: Sebastian Grelak
-Nr studenta: 94681  
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
----
+Currently, two official plugins are available:
 
-## Opis projektu
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-Easy Task Manager to trójwarstwowa aplikacja chmurowa umożliwiająca zarządzanie zadaniami.  
-Użytkownik może tworzyć, edytować, usuwać oraz przeglądać listę zadań.  
-System został zaprojektowany zgodnie z architekturą 3-warstwową (Presentation, Application, Data).
+## React Compiler
 
----
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Architektura systemu
+## Expanding the ESLint configuration
 
-Aplikacja składa się z trzech głównych warstw:
-
-### 1️⃣ Presentation Layer
-- React + Vite  
-- Odpowiada za interfejs użytkownika  
-- Komunikuje się z backendem poprzez REST API  
-
-### 2️⃣ Application Layer
-- Node.js + Express  
-- Udostępnia REST API  
-- Obsługuje logikę biznesową oraz komunikację z bazą danych  
-
-### 3️⃣ Data Layer
-- Azure SQL Database  
-- Relacyjna baza danych  
-- Odpowiada za przechowywanie danych aplikacji  
-
----
-
-## Model komunikacji
-
-User → Frontend (React)  
-Frontend → Backend (REST API, JSON)  
-Backend → Azure SQL (operacje zapisu i odczytu danych)
-
----
-
-## Struktura projektu
-cloud-app/
-├── frontend/
-├── backend/
-├── database/
-├── docs/
-└── README.md
-
-
----
-
-## Mapowanie na Microsoft Azure
-
-| Warstwa      | Lokalnie                  | Środowisko Azure     |
-|--------------|---------------------------|----------------------|
-| Frontend     | Docker                    | Azure App Service    |
-| Backend      | Docker                    | Azure App Service    |
-| Database     | SQL Server (lokalnie)     | Azure SQL Database   |
-
----
-
-## Status Projektu
-
-- [x] Artefakt 1 – Diagram architektury
-- [x] Artefakt 2 – Środowisko wielokontenerowe (Docker Compose)
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
