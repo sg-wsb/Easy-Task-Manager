@@ -17,33 +17,33 @@ namespace backend.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<TaskDto>> Get()
-        {
-            var tasks = _service.GetTasks();
+         public ActionResult<IEnumerable<TaskReadDto>> Get()
+            {   
+        var tasks = _service.GetTasks();
 
-            var result = tasks.Select(t => new TaskDto
+        var result = tasks.Select(t => new TaskReadDto
             {
-                Id = t.Id,
-                Title = t.Title
+            Id = t.Id,
+            Title = t.Title
             }).ToList();
 
-            return Ok(result);
-        }
+    return Ok(result);
+    }
 
         [HttpGet("{id}")]
-        public ActionResult<TaskDto> GetById(int id)
-        {
-            var task = _service.GetTasks().FirstOrDefault(t => t.Id == id);
-
-            if (task == null)
-                return NotFound();
-
-            return Ok(new TaskDto
+        public ActionResult<TaskReadDto> GetById(int id)
             {
-                Id = task.Id,
-                Title = task.Title
-            });
-        }
+        var task = _service.GetTasks().FirstOrDefault(t => t.Id == id);
+
+        if (task == null)
+        return NotFound();
+
+        return Ok(new TaskReadDto
+        {
+            Id = task.Id,
+            Title = task.Title
+        });
+    }
 
         [HttpPost]
         public IActionResult Create([FromBody] TaskDto dto)

@@ -1,19 +1,40 @@
+version: '3.8'
+
 services:
-  db:
-    image: alpine
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: sqlserver
-    command: sleep infinity
+    environment:
+      SA_PASSWORD: "StrongPass!123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql-data:/var/opt/mssql
 
   backend:
-    image: node:20
+    image: mcr.microsoft.com/dotnet/sdk:8.0
     container_name: backend
-    command: sleep infinity
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    command: dotnet run --urls "http://0.0.0.0:8081"
     ports:
-      - "5000:5000"
+      - "8081:8081"
+    depends_on:
+      - sqlserver
 
   frontend:
     image: node:20
     container_name: frontend
-    command: sleep infinity
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    command: sh -c "npm install && npm run dev -- --host"
     ports:
-      - "3000:3000"
+      - "5173:5173"
+    depends_on:
+      - backend
+
+volumes:
+  sql-data:
