@@ -5,33 +5,29 @@ export default function Dashboard() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState("");
 
-  
+  const API_URL = "https://task-api-seba-123-f6dng4b6fzhafga0.polandcentral-01.azurewebsites.net/api/tasks";
+
   const fetchTasks = async () => {
     try {
-      const res = await axios.get("http://localhost:8081/api/tasks");
+      const res = await axios.get(API_URL);
       setTasks(res.data);
     } catch (err) {
       console.error("Błąd pobierania:", err);
     }
   };
 
- 
   const addTask = async () => {
     if (!title.trim()) return;
 
     try {
-      await axios.post("http://localhost:8081/api/tasks", {
-        title
-      });
-
+      await axios.post(API_URL, { title });
       setTitle("");
-      fetchTasks(); 
+      fetchTasks();
     } catch (err) {
       console.error("Błąd dodawania:", err);
     }
   };
 
- 
   useEffect(() => {
     fetchTasks();
   }, []);
@@ -40,7 +36,6 @@ export default function Dashboard() {
     <div style={{ padding: "40px" }}>
       <h1>Tasks Dashboard</h1>
 
-      {/* 🔹 Formularz */}
       <div style={{ marginBottom: "20px" }}>
         <input
           type="text"
@@ -53,7 +48,6 @@ export default function Dashboard() {
         <button onClick={addTask}>Add</button>
       </div>
 
-      {/* 🔹 Lista */}
       <ul>
         {tasks.map((task) => (
           <li key={task.id}>{task.title}</li>
