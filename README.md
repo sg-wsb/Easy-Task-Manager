@@ -8,5 +8,6 @@ Zrealizowane artefakty:
 - [x] Artefakt 4 – REST API (ASP.NET Core Web API + CRUD)
 - [x] Artefakt 5 – DTO, Docker (multi-container + volume), integracja frontend ↔ backend
 - [x] Artefakt 6 – Wdrożenie aplikacji na Azure (frontend + backend + baza danych)
+- [x] Artefakt 7 – Zabezpieczenie aplikacji (Azure Key Vault + Managed Identity)
 
 Frontend komunikuje się z backendem poprzez REST API, a endpointy zostały przetestowane w Swagger UI.
