@@ -6,16 +6,16 @@ namespace backend.Tests
     public class UnitTest1
     {
         [Fact]
-        public void Task_ShouldHaveTitle()
+        public void NewTask_ShouldNotBeCompleted()
         {
-            // Arrange
-            var task = new TaskItem
-            {
-                Title = "Test task"
-            };
+            
+            var task = new CloudTask();
 
-            // Assert
-            Assert.Equal("Test task", task.Title);
+            
+            task.Name = "Przetestować bezpiecznik";
+
+            
+            Assert.False(task.IsCompleted);
         }
     }
 }

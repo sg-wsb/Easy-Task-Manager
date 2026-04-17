@@ -1,4 +1,4 @@
-name: Build and deploy ASP.NET Core app to Azure Web App
+name: Build, Test and Deploy
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build-test-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,13 +16,17 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: 8.0.x
 
       - name: Restore
-        run: dotnet restore ./backend/backend.csproj
+        run: dotnet restore
 
       - name: Build
-        run: dotnet build ./backend/backend.csproj --configuration Release
+        run: dotnet build --configuration Release
+
+      
+      - name: Run tests
+        run: dotnet test --no-build --verbosity normal
 
       - name: Publish
         run: dotnet publish ./backend/backend.csproj -c Release -o publish
