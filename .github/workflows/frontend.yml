@@ -10,27 +10,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+
+      - name: Disable Oryx
+        run: echo "SCM_DO_BUILD_DURING_DEPLOYMENT=false" >> $GITHUB_ENV
 
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      - name: Build frontend
+      - name: Build
         run: |
           cd frontend
           npm install
           npm run build
 
-  
-      - name: Clean dist
+      - name: Clean dist HARD
         run: |
+          rm -rf frontend/dist/node_modules
           rm -f frontend/dist/package.json
           rm -f frontend/dist/server.js
 
-      - name: Add web.config
+      - name: Copy web.config
         run: |
           cp frontend/web.config frontend/dist/web.config
 
