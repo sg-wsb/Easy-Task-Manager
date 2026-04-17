@@ -12,33 +12,29 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Disable Oryx
-        run: echo "SCM_DO_BUILD_DURING_DEPLOYMENT=false" >> $GITHUB_ENV
-
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      - name: Build
+      - name: Install & Build
         run: |
           cd frontend
           npm install
           npm run build
 
-      - name: Clean dist HARD
-        run: |
-          rm -rf frontend/dist/node_modules
-          rm -f frontend/dist/package.json
-          rm -f frontend/dist/server.js
-
       - name: Copy web.config
         run: |
           cp frontend/web.config frontend/dist/web.config
+
+      - name: Create ZIP
+        run: |
+          cd frontend/dist
+          zip -r app.zip .
 
       - name: Deploy
         uses: azure/webapps-deploy@v2
         with:
           app-name: task-frontend-seba-123
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: frontend/dist
+          package: frontend/dist/app.zip
