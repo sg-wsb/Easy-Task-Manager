@@ -23,10 +23,7 @@ export default function Dashboard() {
     if (!title.trim()) return;
 
     try {
-      await axios.post(API_URL, {
-        title: title
-      });
-
+      await axios.post(API_URL, { title });
       setTitle("");
       fetchTasks();
     } catch (err) {
@@ -53,7 +50,7 @@ export default function Dashboard() {
     <div style={{ padding: "40px", fontFamily: "Arial" }}>
       <h1>Tasks Dashboard</h1>
 
-      {/* 🔹 DODAWANIE */}
+      {/*  DODAWANIE */}
       <div style={{ marginBottom: "20px" }}>
         <input
           type="text"
@@ -66,20 +63,24 @@ export default function Dashboard() {
         <button onClick={addTask}>Add</button>
       </div>
 
-    
+      {/*  LISTA */}
       <ul>
-        {tasks.map((task) => (
-          <li key={task.id} style={{ marginBottom: "10px" }}>
-            {task.title}
+        {tasks.length === 0 ? (
+          <p>Brak zadań</p>
+        ) : (
+          tasks.map((task) => (
+            <li key={task.id} style={{ marginBottom: "10px" }}>
+              {task.title}
 
-            <button
-              onClick={() => deleteTask(task.id)}
-              style={{ marginLeft: "10px" }}
-            >
-              Usuń
-            </button>
-          </li>
-        ))}
+              <button
+                onClick={() => deleteTask(task.id)}
+                style={{ marginLeft: "10px" }}
+              >
+                Usuń
+              </button>
+            </li>
+          ))
+        )}
       </ul>
     </div>
   );
