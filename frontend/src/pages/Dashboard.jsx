@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 
-const API_URL = "https://task-api-seba-123.azurewebsites.net/api/tasks";
+const API_URL = "https://task-api-seba-123-f6dng4b6fzhafga0.polandcentral-01.azurewebsites.net/api/tasks";
 
 export default function Dashboard() {
   const [tasks, setTasks] = useState([]);
