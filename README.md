@@ -9,5 +9,7 @@ Zrealizowane artefakty:
 - [x] Artefakt 5 – DTO, Docker (multi-container + volume), integracja frontend ↔ backend
 - [x] Artefakt 6 – Wdrożenie aplikacji na Azure (frontend + backend + baza danych)
 - [x] Artefakt 7 – Zabezpieczenie aplikacji (Azure Key Vault + Managed Identity)
+- [x] Artefakt 8: Wybudowany “bezpiecznik” i wdrożony automatu CI/CD
+
 
 Frontend komunikuje się z backendem poprzez REST API, a endpointy zostały przetestowane w Swagger UI.
