@@ -10,30 +10,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      
       - name: Checkout
         uses: actions/checkout@v3
 
-      
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      
       - name: Build frontend
         run: |
           cd frontend
           npm install
           npm run build
 
-      
+  
+      - name: Clean dist
+        run: |
+          rm -f frontend/dist/package.json
+          rm -f frontend/dist/server.js
+
       - name: Add web.config
         run: |
           cp frontend/web.config frontend/dist/web.config
 
-     
-      - name: Deploy to Azure
+      - name: Deploy
         uses: azure/webapps-deploy@v2
         with:
           app-name: task-frontend-seba-123
